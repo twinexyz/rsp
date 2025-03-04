@@ -19,6 +19,11 @@ use revm::{
 use revm_primitives::{Address, Bytes, EVMError, Env, HaltReason};
 use std::sync::Arc;
 
+use twine_reth_evm::precompiles::{
+    transaction::transaction_precompile,
+    verifier::verifier_precompile,
+};
+
 pub type CustomEthEvmConfig = CustomEvmConfig<EthEvmConfig>;
 
 #[cfg(feature = "optimism")]
@@ -100,6 +105,10 @@ where
             ANNOTATED_BN_PAIR,
             ANNOTATED_KZG_PROOF,
         ]);
+
+        // Twine Node precompiles.
+        loaded_precompiles.extend(verifier_precompile());
+        loaded_precompiles.extend(transaction_precompile());
 
         loaded_precompiles
     });
