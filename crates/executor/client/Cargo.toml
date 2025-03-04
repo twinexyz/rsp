@@ -50,6 +50,8 @@ alloy-rpc-types.workspace = true
 op-alloy-network = { workspace = true, optional = true }
 op-alloy-rpc-types = { workspace = true, optional = true }
 
+# twine-precompiles
+twine-reth-evm.workspace = true
 
 [features]
 optimism = [
